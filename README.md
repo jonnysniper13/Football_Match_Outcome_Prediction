@@ -36,15 +36,15 @@ In this project, I'm implementing a data science pipeline seeking to predict the
 - Prior to creating new features, the dataset was sorted into a time-series, by converting date strings into datetimes. This allows easier creation of typical football statistical features (e.g. winning streaks).
 
 - The main features created revolve around the result outcome, which needed to be quantified in a code friendly format. To do this, the result string was split into two numerical features, Home Goals and Away Goals, such that a simple outcome classifier could be created: +1 for a Home Win, 0 for a Draw, -1 for an Away Win. From here, the following features could be created:
-    - Home/Away Team winning streak for Home/Away/All matches
+    - Home/Away Team winning streak for Home/Away/All matches. Calculating streaks required cumulative summations on shifted data as follows:
+        ```python
+        def get_streak(df, team):
+            team_result_series = df['Outcome'].where(df['Home_Team'] == team, -df['Outcome'])
+            team_streak_series = team_result_series.groupby((team_result_series != team_result_series.shift()).cumsum()).cumsum()
+            return team_streak_series.where(team_streak_series > 0, 0) 
+        ```
     - Home/Away Team form (i.e. aggregation of results outcome for last 5 matches) for both Home/Away/All matches
-        - Calculating streaks required cumulative summations on shifted data as follows:
-            ```python
-            def get_streak(df, team):
-                team_result_series = df['Outcome'].where(df['Home_Team'] == team, -df['Outcome'])
-                team_streak_series = team_result_series.groupby((team_result_series != team_result_series.shift()).cumsum()).cumsum()
-                return team_streak_series.where(team_streak_series > 0, 0) 
-            ```
+
     - Home/Away Team goals scored for Home/Away/All matches over the rolling last 10 matches
 
 #### *** WIP - TO BE UPDATED BEYOND THIS POINT ***

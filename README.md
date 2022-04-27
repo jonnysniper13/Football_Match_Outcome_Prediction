@@ -27,7 +27,7 @@ In this project, I'm implementing a data science pipeline seeking to predict the
     - Capacity - strength of crowd (noting that attendence isn't known)
 
 
-- Null Hypothesis: **H<sub>0</sub>: The outcome of football natches cannot be predicted by previous statistics/records alone.**
+- Null Hypothesis: **H<sub>0</sub>: The accuracy of a football match predictor is no better than random choice.**
 
 ## Milestone 2 - Feature Engineering
 
@@ -47,8 +47,9 @@ In this project, I'm implementing a data science pipeline seeking to predict the
 
     - Home/Away Team goals scored for Home/Away/All matches over the rolling last 10 matches
 
-#### *** WIP - TO BE UPDATED BEYOND THIS POINT ***
+## Milestone 3 - Model Training TODO
 
+## Milestone 4 - Inference TODO
 
 - Answer some of these questions in the next few bullet points. What have you built? What technologies have you used? Why have you used those?
 
